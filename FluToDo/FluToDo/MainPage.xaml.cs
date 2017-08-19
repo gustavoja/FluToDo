@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluToDo.Models.ServiceContracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,6 @@ namespace FluToDo
         public MainPage()
         {
             InitializeComponent();
-           
         }
     }
 }

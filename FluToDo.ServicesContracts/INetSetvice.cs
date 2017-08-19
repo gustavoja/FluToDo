@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluToDo.ServiceContracts
+namespace FluToDo.Models.ServiceContracts
 {
     public interface INetService
     {
-        string ServerUrl { get; set; }
+        string ServerAddress { get; set; }
         int Port { get; set; }
         string ApiRoute { get; set; }
         string RestServiceUrl { get; }

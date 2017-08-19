@@ -14,12 +14,15 @@ namespace FluToDo.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            //Register platform specific services here
+            //FluToDo.Services.ServiceLocator.Ioc.RegisterType(IService, PlatformSpecificServiceType);
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
             LoadApplication(new App());
         }
     }

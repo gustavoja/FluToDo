@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using FluToDo.Models.Entities;
-using FluToDo.ServiceContracts;
+using FluToDo.Models.ServiceContracts;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FluToDo.Services
+namespace FluToDo.Models.Services
 {
     public class NetService : INetService
     {
@@ -17,16 +17,16 @@ namespace FluToDo.Services
         private HttpClient client;
 
         private int port;
-        private string restServerUrl;
+        private string serverAddress;
         private string apiRoute;
         #endregion Fields
 
         #region Properties
 
-        public string ServerUrl { get { return restServerUrl; } set { restServerUrl = value; } }
+        public string ServerAddress { get { return serverAddress; } set { serverAddress = value; } }
         public int Port { get { return port; } set { port = value; } }
         public string ApiRoute { get { return apiRoute; } set { apiRoute = value; } }
-        public string RestServiceUrl { get { return $"{ServerUrl}:{Port}{ApiRoute}"; } }
+        public string RestServiceUrl { get { return $"{ServerAddress}:{Port}/{ApiRoute}"; } }
 
         #endregion Properties
 
@@ -108,7 +108,7 @@ namespace FluToDo.Services
 
         private async Task<T> GetRequest<T>(string uriParameter = "")
         {
-            string url = $"{RestServiceUrl}{uriParameter}";
+            Uri url = new Uri($"{RestServiceUrl}{uriParameter}");
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
