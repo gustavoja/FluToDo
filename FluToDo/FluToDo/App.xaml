@@ -7,4 +7,8 @@
 		<!-- Application resource dictionary -->
 
 	</Application.Resources>
+
+    <Application.MainPage>
+        <NavigationPage></NavigationPage>
+    </Application.MainPage>
 </Application>

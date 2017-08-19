@@ -35,6 +35,7 @@ namespace FluToDo.Services
 
             //Register services located in the forms project
             Ioc.RegisterType<INavigationService,NavigationService>();
+            Ioc.RegisterType<IDialogService, DialogService>();
         }
 
         public static T GetInstance<T>()

@@ -3,11 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FluToDo.Pages"
              xmlns:vm="clr-namespace:FluToDo.ViewModels;assembly=FluToDo.ViewModels"
-             x:Class="FluToDo.Pages.MainPage">
+             xmlns:customViews="clr-namespace:FluToDo.CustomViews"
+             x:Class="FluToDo.Pages.MainPage"
+             Title="{Binding Title}"
+             >
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
-        </StackLayout>
+        <ListView  IsRefreshing="{Binding IsRefreshing}" ItemsSource="{Binding ItemList}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding SynchronizeCommand}" >
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <customViews:ItemView></customViews:ItemView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+
     </ContentPage.Content>
+    
 </local:BasePage>

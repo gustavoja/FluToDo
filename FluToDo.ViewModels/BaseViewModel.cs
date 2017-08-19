@@ -1,10 +1,6 @@
 ﻿using FluToDo.Models.ServiceContracts;
 using FluToDo.Models.ServicesContracts;
 using FluToDo.ViewModels.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FluToDo.ViewModels
 {
@@ -42,15 +38,17 @@ namespace FluToDo.ViewModels
         
         protected INetService NetService;
         protected INavigationService NavigationService;
+        protected IDialogService DialogService;
 
         #endregion Services
 
         #region Constructor
 
-        public BaseViewModel(INavigationService navigationService,INetService netService)
+        public BaseViewModel(INavigationService navigationService,INetService netService, IDialogService dialogService)
         {
             NavigationService = navigationService;
             NetService = netService;
+            DialogService = dialogService;
         }
 
         #endregion Constructor
