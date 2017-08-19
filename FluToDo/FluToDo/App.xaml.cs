@@ -1,4 +1,5 @@
 ﻿using FluToDo.Models.ServiceContracts;
+using FluToDo.Models.ServicesContracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,14 @@ namespace FluToDo
 
             InitializeComponent();
 
-            MainPage = new FluToDo.MainPage();
+            Services.ServiceLocator.GetInstance<INavigationService>().PushPage(typeof(ViewModels.MainPageViewModel));
         }
 
         #endregion constructor
 
         #region lifecycle
 
-        protected async override void OnStart()
+        protected override void OnStart()
         {
             // Handle when your app starts
         }

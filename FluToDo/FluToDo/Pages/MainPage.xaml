@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FluToDo.Pages"
+             xmlns:vm="clr-namespace:FluToDo.ViewModels;assembly=FluToDo.ViewModels"
+             x:Class="FluToDo.Pages.MainPage">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin Forms!" />
+        </StackLayout>
+    </ContentPage.Content>
+</local:BasePage>
