@@ -22,6 +22,9 @@ namespace FluToDo.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            //Register platform specific services here
+            //FluToDo.Services.ServiceLocator.Ioc.RegisterType(IService, PlatformSpecificServiceType);
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

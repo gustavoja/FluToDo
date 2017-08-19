@@ -28,6 +28,9 @@ namespace FluToDo.UWP
         /// </summary>
         public App()
         {
+            //Register platform specific services here
+            //FluToDo.Services.ServiceLocator.Ioc.RegisterType(IService, PlatformSpecificServiceType);
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
