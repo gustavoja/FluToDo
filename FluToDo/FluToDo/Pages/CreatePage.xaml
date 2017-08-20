@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FluToDo.Pages.CreatePage"
+             xmlns:local="clr-namespace:FluToDo.Pages"
+             Padding="{StaticResource Padding}"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <Label VerticalOptions="Start" Text="Name"/>
+                <Entry Text="{Binding ItemText, Mode=TwoWay}"></Entry>
+            </StackLayout>
+            <Button VerticalOptions="End" Text="Create" Command="{Binding CreateItemCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</local:BasePage>

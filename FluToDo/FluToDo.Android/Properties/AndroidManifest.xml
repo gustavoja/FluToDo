@@ -2,5 +2,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="preferExternal">
 	<uses-sdk android:minSdkVersion="16" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="FluToDo.Android"></application>
+	<application android:label="FluToDo.Android" android:icon="@drawable/icon"></application>
 </manifest>
