@@ -44,6 +44,9 @@
       <DependentUpon>ItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\CreatePage.xaml.cs">
+      <DependentUpon>CreatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CustomViews\ItemView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CreatePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

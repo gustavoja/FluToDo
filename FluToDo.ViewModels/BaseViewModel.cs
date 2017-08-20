@@ -1,9 +1,12 @@
-﻿using FluToDo.Models.ServiceContracts;
-using FluToDo.Models.ServicesContracts;
+﻿using FluToDo.Models.ServicesContracts;
+using FluToDo.Models.ServicesContracts.Helpers;
 using FluToDo.ViewModels.Helpers;
 
 namespace FluToDo.ViewModels
 {
+    /// <summary>
+    /// Base View Model for all the application pages
+    /// </summary>
     public class BaseViewModel : ObservableObject
     {
         #region Fields
@@ -18,6 +21,11 @@ namespace FluToDo.ViewModels
         #endregion Fields
 
         #region Properties      
+
+        /// <summary>
+        /// Receive navigation argumetns for this Page
+        /// </summary>
+        public NavigationArgument NavigationArgument { get; set; }
 
         /// <summary>
         /// Public property to set and get the title of the item
@@ -35,7 +43,7 @@ namespace FluToDo.ViewModels
         #endregion Properties
 
         #region Services
-        
+
         protected INetService NetService;
         protected INavigationService NavigationService;
         protected IDialogService DialogService;
@@ -44,7 +52,7 @@ namespace FluToDo.ViewModels
 
         #region Constructor
 
-        public BaseViewModel(INavigationService navigationService,INetService netService, IDialogService dialogService)
+        public BaseViewModel(INavigationService navigationService, INetService netService, IDialogService dialogService)
         {
             NavigationService = navigationService;
             NetService = netService;

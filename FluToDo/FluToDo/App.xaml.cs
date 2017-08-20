@@ -1,10 +1,4 @@
-﻿using FluToDo.Models.ServiceContracts;
-using FluToDo.Models.ServicesContracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using FluToDo.Models.ServicesContracts;
 using Xamarin.Forms;
 
 namespace FluToDo
@@ -21,7 +15,12 @@ namespace FluToDo
 
             InitializeComponent();
 
-            Services.ServiceLocator.GetInstance<INavigationService>().PushPage(typeof(ViewModels.MainPageViewModel));
+             Services.ServiceLocator.GetInstance<INavigationService>().PushPage(typeof(ViewModels.MainPageViewModel));
+        }
+
+        private void NavigationPage_Popped(object sender, NavigationEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion constructor
@@ -52,7 +51,7 @@ namespace FluToDo
         {
             var netservice = Services.ServiceLocator.GetInstance<INetService>();
             netservice.ServerAddress = "http://localhost";
-            netservice.Port = 15000;
+            netservice.Port = 8080;
             netservice.ApiRoute = "api/todo/";
         }
 

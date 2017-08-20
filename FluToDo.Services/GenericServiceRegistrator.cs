@@ -1,10 +1,5 @@
-﻿using FluToDo.Models.ServiceContracts;
+﻿using FluToDo.Models.ServicesContracts;
 using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FluToDo.Models.Services
 {
@@ -16,6 +11,8 @@ namespace FluToDo.Models.Services
         public static void Register(IUnityContainer ioc)
         {
             ioc.RegisterInstance<INetService>(new NetService());
+            //Use Mock for offline debug
+            //ioc.RegisterInstance<INetService>(new Mocks.MockNetService());
         }
     }
 }

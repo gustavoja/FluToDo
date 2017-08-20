@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using FluToDo.Models.Entities;
-using FluToDo.Models.ServiceContracts;
+using FluToDo.Models.ServicesContracts;
 using System;
 using System.Collections.Generic;
 using System.Net;

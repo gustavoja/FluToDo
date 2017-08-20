@@ -1,5 +1,4 @@
-﻿using FluToDo.Models.ServiceContracts;
-using FluToDo.Models.ServicesContracts;
+﻿using FluToDo.Models.ServicesContracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +13,12 @@ namespace FluToDo.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
+
+        #region Fields
+
+        public const string RefreshListArgumentKey = "MainPageViewModel.RefreshListArgumentKey";
+
+        #endregion Fields
 
         #region Fields
 
@@ -44,6 +49,13 @@ namespace FluToDo.ViewModels
             set { SetProperty(ref itemDeletedCommand, value); }
         }
 
+        private ICommand newItemClickedCommand;
+        public ICommand NewItemClickedCommand
+        {
+            get { return newItemClickedCommand; }
+            set { SetProperty(ref newItemClickedCommand, value); }
+        }
+
         #endregion Commands
 
         #region Porperties
@@ -71,9 +83,11 @@ namespace FluToDo.ViewModels
             SynchronizeCommand = new Command(OnSynchornize);
             ItemTappedCommand = new Command<object>(OnItemTapped);
             ItemDeletedCommand = new Command<object>(OnItemDeleted);
+            NewItemClickedCommand = new Command(OnNewItemClicked);
             Title = Strings.FluToDo;
 
             SynchronizeCommand.Execute(null);
+
         }
 
         #endregion Constructor
@@ -158,7 +172,36 @@ namespace FluToDo.ViewModels
                 DialogService.DisplayAlert(Strings.ConnectionFailed, e.Message, Strings.Ok);
             }
 
-            #endregion Handlers
+        }
+
+        private void OnNewItemClicked(object eventArg)
+        {
+            NavigationService.PushPage(typeof(CreatePageViewModel));
+        }
+
+        #endregion Handlers
+
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (this.NavigationArgument != null)
+            {
+                if (NavigationArgument.Key == RefreshListArgumentKey)
+                {
+                    EntityItemList = (NavigationArgument.Object as List<TodoItem>);
+                    var vmList = EntityItemList.Select(i => new TodoItemViewModel(i)).ToList();
+                    if (ItemList != null)
+                        ItemList.Clear();
+                    ItemList = new ObservableCollection<TodoItemViewModel>(vmList.AsEnumerable());
+                    NavigationArgument = null;
+                }
+            }
+        }
+
+        public override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            this.NavigationArgument = null;
         }
     }
 }

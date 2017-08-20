@@ -120,6 +120,9 @@
   <data name="ConnectionFailed" xml:space="preserve">
     <value>Connection failed</value>
   </data>
+  <data name="CreatePageTitle" xml:space="preserve">
+    <value>Create new FluToDo task</value>
+  </data>
   <data name="DeletedCorrectly" xml:space="preserve">
     <value>ToDo item {0} has been deleted correctly</value>
   </data>

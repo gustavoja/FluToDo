@@ -1,47 +1,52 @@
-﻿using FluToDo.Models.ServicesContracts;
+﻿using FluToDo.Models.ServicesContracts.Helpers;
+using FluToDo.Models.ServicesContracts;
+using FluToDo.Pages;
 using FluToDo.ViewModels;
 using System;
+using Xamarin.Forms;
 
 namespace FluToDo.Services
 {
     public class NavigationService : INavigationService
     {
-        public void PopPage(bool modalPush = false)
+        public async void PopPage(NavigationArgument args = null, bool modalPush = false)
         {
-            if (App.Current.MainPage != null && App.Current.MainPage.Navigation.NavigationStack.Count>1)
+            if (App.Current.MainPage != null && App.Current.MainPage.Navigation.NavigationStack.Count > 1)
             {
+                //Send navigation args to the new page
+                (App.Current.MainPage.Navigation.NavigationStack[App.Current.MainPage.Navigation.NavigationStack.Count - 2] as BasePage).ViewModel.NavigationArgument = args;
+
                 if (!modalPush)
                 {
-                    App.Current.MainPage.Navigation.PopAsync();
+                    await App.Current.MainPage.Navigation.PopAsync();
                 }
                 else
                 {
-                    App.Current.MainPage.Navigation.PopModalAsync();
+                    await App.Current.MainPage.Navigation.PopModalAsync();
                 }
             }
         }
 
-        public void PushPage(Type ViewModel, object args = null, bool modalPush = false)
+        public void PushPage(Type ViewModel, NavigationArgument args = null, bool modalPush = false)
         {
+            BasePage newPage;
             switch (ViewModel.Name)
             {
                 case nameof(MainPageViewModel):
-                    var newPage = new Pages.MainPage();
+                    newPage = new MainPage(args);
                     if (App.Current.MainPage != null)
                     {
-                        if (!modalPush)
-                        {
-                            App.Current.MainPage.Navigation.PushAsync(newPage);
-                        }
-                        else
-                        {
-                            App.Current.MainPage.Navigation.PushModalAsync(newPage);
-                        }
+                        Push(newPage, modalPush);
                     }
                     else
                     {
                         App.Current.MainPage = newPage;
                     }
+                    break;
+
+                case nameof(CreatePageViewModel):
+                    newPage = new CreatePage();
+                    Push(newPage, modalPush);
                     break;
                 default:
                     break;
@@ -52,6 +57,23 @@ namespace FluToDo.Services
         {
             if (App.Current.MainPage != null)
                 App.Current.MainPage.Navigation.PopToRootAsync();
+        }
+
+        private void Push(ContentPage page, bool modalPush)
+        {
+            if (!modalPush)
+            {
+                App.Current.MainPage.Navigation.PushAsync(page);
+            }
+            else
+            {
+                App.Current.MainPage.Navigation.PushModalAsync(page);
+            }
+        }
+
+        public void PagePopped(NavigationArgument args)
+        {
+            (App.Current.MainPage.Navigation.NavigationStack[App.Current.MainPage.Navigation.NavigationStack.Count - 2] as BasePage).ViewModel.NavigationArgument = args;
         }
     }
 }

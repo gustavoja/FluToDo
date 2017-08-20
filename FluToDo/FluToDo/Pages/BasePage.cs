@@ -1,9 +1,5 @@
-﻿using FluToDo.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluToDo.Models.ServicesContracts.Helpers;
+using FluToDo.ViewModels;
 using Xamarin.Forms;
 
 namespace FluToDo.Pages
@@ -25,11 +21,25 @@ namespace FluToDo.Pages
 
         #endregion bindable properties
 
-        public BasePage()
-        {
+        #region properties
 
+        /// <summary>
+        /// Receive navigation arguments for this Page
+        /// </summary>
+        protected NavigationArgument NavigationArguments { get; set; }
+
+        #endregion properties
+
+        #region constructor
+
+        public BasePage(NavigationArgument navigationArguments = null)
+        {
+            NavigationArguments = navigationArguments;
         }
 
+        #endregion constructor
+
+        #region lifecycle
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -51,5 +61,7 @@ namespace FluToDo.Pages
         {
             return ViewModel.OnBackButtonPressed();
         }
+        #endregion lifecycle
+
     }
 }
