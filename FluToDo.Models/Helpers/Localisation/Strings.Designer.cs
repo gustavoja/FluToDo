@@ -71,6 +71,33 @@ namespace FluToDo.Models.Helpers.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ToDo item {0} has been deleted correctly.
+        /// </summary>
+        public static string DeletedCorrectly {
+            get {
+                return ResourceManager.GetString("DeletedCorrectly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to deleted  {0}.
+        /// </summary>
+        public static string DeletedIncorrectly {
+            get {
+                return ResourceManager.GetString("DeletedIncorrectly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed.
+        /// </summary>
+        public static string Failed {
+            get {
+                return ResourceManager.GetString("Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FluToDo.
         /// </summary>
         public static string FluToDo {
@@ -85,6 +112,24 @@ namespace FluToDo.Models.Helpers.Localisation {
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Succesful.
+        /// </summary>
+        public static string Succesful {
+            get {
+                return ResourceManager.GetString("Succesful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to update {0}.
+        /// </summary>
+        public static string UpdatedIncorrectly {
+            get {
+                return ResourceManager.GetString("UpdatedIncorrectly", resourceCulture);
             }
         }
     }

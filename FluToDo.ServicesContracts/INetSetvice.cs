@@ -17,7 +17,7 @@ namespace FluToDo.Models.ServiceContracts
         Task<List<TodoItem>> GetAll();
         Task<TodoItem> GetById(string id);
         Task<TodoItem> Create(TodoItem item);
-        Task<bool> Update(TodoItem item, string id);
+        Task<bool> Update(TodoItem item, string id = null);
         Task<bool> Delete(TodoItem item);
 
     }

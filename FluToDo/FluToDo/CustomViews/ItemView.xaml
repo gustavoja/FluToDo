@@ -2,9 +2,10 @@
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FluToDo.CustomViews.ItemView"
-             Orientation="Horizontal">
+             Orientation="Horizontal"
+             Margin="10">
 
-    <Label HorizontalOptions="Fill" VerticalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="Hello Xamarin.Forms!" />
-    <Image WidthRequest="100" HeightRequest="100"></Image>
+    <Label HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Name}" />
+    <Image VerticalOptions="Center" WidthRequest="50" HeightRequest="50" Source="check.png" IsVisible="{Binding IsComplete}"></Image>
 
 </StackLayout>

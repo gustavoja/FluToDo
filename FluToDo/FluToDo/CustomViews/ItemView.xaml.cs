@@ -16,11 +16,19 @@ namespace FluToDo.CustomViews
 
         public string Name
         {
-            get { return (string)GetValue(NamePorperty); }
-            set { SetValue(NamePorperty, value); }
+            get { return (string)GetValue(NameProperty); }
+            set { SetValue(NameProperty, value); }
         }
-        public static readonly BindableProperty NamePorperty =
+        public static readonly BindableProperty NameProperty =
         BindableProperty.Create(nameof(Name), typeof(string), typeof(ItemView), "");
+
+        public bool IsComplete
+        {
+            get { return (bool)GetValue(IsCompleteProperty); }
+            set { SetValue(IsCompleteProperty, value); }
+        }
+        public static readonly BindableProperty IsCompleteProperty =
+        BindableProperty.Create(nameof(IsComplete), typeof(bool), typeof(ItemView), false);
 
         #endregion BindableProperties
 

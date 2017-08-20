@@ -120,10 +120,25 @@
   <data name="ConnectionFailed" xml:space="preserve">
     <value>Connection failed</value>
   </data>
+  <data name="DeletedCorrectly" xml:space="preserve">
+    <value>ToDo item {0} has been deleted correctly</value>
+  </data>
+  <data name="DeletedIncorrectly" xml:space="preserve">
+    <value>Failed to deleted  {0}</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
   <data name="FluToDo" xml:space="preserve">
     <value>FluToDo</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="Succesful" xml:space="preserve">
+    <value>Succesful</value>
+  </data>
+  <data name="UpdatedIncorrectly" xml:space="preserve">
+    <value>Failed to update {0}</value>
   </data>
 </root>

@@ -11,5 +11,6 @@ namespace FluToDo.Pages
             this.ViewModel = Services.ServiceLocator.GetInstance<MainPageViewModel>();
             InitializeComponent();
         }
+
     }
 }
