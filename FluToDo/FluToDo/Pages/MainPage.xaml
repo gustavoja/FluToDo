@@ -8,29 +8,33 @@
              x:Class="FluToDo.Pages.MainPage"
              Title="{Binding Title}"
              IsBusy="{Binding IsBusy}"
+             Padding="{StaticResource Padding}"
              x:Name="root"
              >
 
     <ContentPage.Content>
-        <ListView  IsRefreshing="{Binding IsRefreshing}" ItemsSource="{Binding ItemList}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding SynchronizeCommand}"  >
+        <StackLayout VerticalOptions="FillAndExpand">
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <ViewCell.ContextActions>
-                            <MenuItem Command="{Binding Source={x:Reference root}, Path=BindingContext.ItemDeletedCommand}" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True"/>
-                        </ViewCell.ContextActions>
-                        <customViews:ItemView HorizontalOptions="FillAndExpand"  IsComplete="{Binding IsComplete}" Name="{Binding Name}" HeightRequest="150"/>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+            <ListView  IsRefreshing="{Binding IsRefreshing}" ItemsSource="{Binding ItemList}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding SynchronizeCommand}" ItemSelected="ListView_ItemSelected" RowHeight="{StaticResource ListItemHeight}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Command="{Binding Source={x:Reference root}, Path=BindingContext.ItemDeletedCommand}" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True"/>
+                            </ViewCell.ContextActions>
+                            <customViews:ItemView HorizontalOptions="FillAndExpand"  IsComplete="{Binding IsComplete}" Name="{Binding Name}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}" />
+                </ListView.Behaviors>
+            </ListView>
 
-            <ListView.Behaviors>
-                <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}" />
-            </ListView.Behaviors>
-        </ListView>
+            <Button Text="New" HorizontalOptions="Fill" VerticalOptions="End" Command="{Binding NewItemClickedCommand}"></Button>
 
-
+        </StackLayout>
     </ContentPage.Content>
 
 </local:BasePage>

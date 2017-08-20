@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GenericServiceRegistrator.cs" />
+    <Compile Include="Mocks\MockNetService.cs" />
     <Compile Include="NetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

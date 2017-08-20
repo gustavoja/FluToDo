@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FluToDo.Pages.CreatePage"
              xmlns:local="clr-namespace:FluToDo.Pages"
-             Padding="10">
+             Padding="{StaticResource Padding}"
+             Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
-            <Label VerticalOptions="Start" Text="Name"/>
-            <Entry></Entry>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <Label VerticalOptions="Start" Text="Name"/>
+                <Entry></Entry>
+            </StackLayout>
             <Button VerticalOptions="End" Text="Create"></Button>
         </StackLayout>
     </ContentPage.Content>

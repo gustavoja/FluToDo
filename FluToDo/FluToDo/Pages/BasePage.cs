@@ -25,11 +25,25 @@ namespace FluToDo.Pages
 
         #endregion bindable properties
 
-        public BasePage()
-        {
+        #region properties
 
+        /// <summary>
+        /// Receive navigation argumetns for this Page
+        /// </summary>
+        protected object NavigationArguments { get; set; }
+
+        #endregion properties
+
+        #region constructor
+
+        public BasePage(object navigationArguments=null)
+        {
+            NavigationArguments = navigationArguments;
         }
 
+        #endregion constructor
+
+        #region lifecycle
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -51,5 +65,7 @@ namespace FluToDo.Pages
         {
             return ViewModel.OnBackButtonPressed();
         }
+        #endregion lifecycle
+
     }
 }

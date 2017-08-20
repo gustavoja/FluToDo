@@ -17,6 +17,11 @@ namespace FluToDo.ViewModels
             Title = Strings.CreatePageTitle;
         }
 
+        public override bool OnBackButtonPressed()
+        {
+            NavigationService.PopPage();
+            return false;
+        }
         #endregion Constructor
     }
 }

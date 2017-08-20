@@ -29,7 +29,7 @@ namespace FluToDo.Services
             switch (ViewModel.Name)
             {
                 case nameof(MainPageViewModel):
-                    newPage = new MainPage();
+                    newPage = new MainPage(args);
                     if (App.Current.MainPage != null)
                     {
                         Push(newPage, modalPush);
