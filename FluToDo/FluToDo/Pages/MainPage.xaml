@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FluToDo.Pages"
+             xmlns:vm="clr-namespace:FluToDo.ViewModels;assembly=FluToDo.ViewModels"
+             xmlns:customViews="clr-namespace:FluToDo.CustomViews"
+             xmlns:behaviors="clr-namespace:FluToDo.Behaviors"
+             x:Class="FluToDo.Pages.MainPage"
+             Title="{Binding Title}"
+             IsBusy="{Binding IsBusy}"
+             x:Name="root"
+             >
+
+    <ContentPage.Content>
+        <ListView  IsRefreshing="{Binding IsRefreshing}" ItemsSource="{Binding ItemList}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding SynchronizeCommand}"  >
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Command="{Binding Source={x:Reference root}, Path=BindingContext.ItemDeletedCommand}" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True"/>
+                        </ViewCell.ContextActions>
+                        <customViews:ItemView HorizontalOptions="FillAndExpand"  IsComplete="{Binding IsComplete}" Name="{Binding Name}" HeightRequest="150"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}" />
+            </ListView.Behaviors>
+        </ListView>
+
+
+    </ContentPage.Content>
+
+</local:BasePage>

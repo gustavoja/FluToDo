@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using FluToDo.Models;
+using FluToDo.Models.ServicesContracts;
 
 namespace FluToDo.Services
 {
@@ -29,8 +30,12 @@ namespace FluToDo.Services
 
         private static void RegisterServices()
         {
-            //Register generic services located at the service project
+            //Register generic services located in the service project
             Models.Services.GenericServiceRegistrator.Register(Ioc);
+
+            //Register services located in the forms project
+            Ioc.RegisterType<INavigationService,NavigationService>();
+            Ioc.RegisterType<IDialogService, DialogService>();
         }
 
         public static T GetInstance<T>()

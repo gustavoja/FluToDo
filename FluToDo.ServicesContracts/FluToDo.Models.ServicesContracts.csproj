@@ -40,6 +40,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IDialogService.cs" />
+    <Compile Include="INavigationService.cs" />
     <Compile Include="INetSetvice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

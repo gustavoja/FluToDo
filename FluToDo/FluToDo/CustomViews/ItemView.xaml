@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FluToDo.CustomViews.ItemView"
+             Orientation="Horizontal"
+             Margin="10">
+
+    <Label HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Name}" />
+    <RelativeLayout VerticalOptions="Center" HorizontalOptions="End">
+        <Image Aspect="AspectFit" Source="check.png" IsVisible="{Binding IsCompleteAndUpdate}"  HorizontalOptions="End"></Image>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
+    </RelativeLayout>
+
+</StackLayout>
