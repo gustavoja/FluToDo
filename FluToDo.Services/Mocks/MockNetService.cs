@@ -1,4 +1,4 @@
-﻿using FluToDo.Models.ServiceContracts;
+﻿using FluToDo.Models.ServicesContracts;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -29,8 +29,9 @@ namespace FluToDo.Models.Services.Mocks
 
         public async Task<TodoItem> Create(TodoItem item)
         {
+            itemKey += 1;
+            item.Key = itemKey.ToString();
             await Task.Delay(500);
-            item.Key = (itemKey + 1).ToString();
             list.Add(item);
             return item;
         }

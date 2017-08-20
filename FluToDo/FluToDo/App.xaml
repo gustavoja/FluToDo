@@ -13,6 +13,6 @@
     </Application.Resources>
 
     <Application.MainPage>
-        <NavigationPage></NavigationPage>
+        <NavigationPage x:Name="NavigationPage"></NavigationPage>
     </Application.MainPage>
 </Application>

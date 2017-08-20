@@ -1,4 +1,5 @@
-﻿using FluToDo.ViewModels;
+﻿using FluToDo.Models.ServicesContracts.Helpers;
+using FluToDo.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,10 +8,10 @@ namespace FluToDo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : BasePage
     {
-        public MainPage(object navigationArguments = null) : base(navigationArguments)
+        public MainPage(NavigationArgument navigationArguments = null) : base(navigationArguments)
         {
             this.ViewModel = Services.ServiceLocator.GetInstance<MainPageViewModel>();
-            this.ViewModel.NavigationArguments = NavigationArguments;
+            this.ViewModel.NavigationArgument = NavigationArguments;
             InitializeComponent();
         }
 

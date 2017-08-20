@@ -1,4 +1,5 @@
-﻿using FluToDo.Models.ServiceContracts;
+﻿using FluToDo.Models.ServicesContracts;
+using FluToDo.Models.ServicesContracts.Helpers;
 using FluToDo.ViewModels.Helpers;
 
 namespace FluToDo.ViewModels
@@ -24,7 +25,7 @@ namespace FluToDo.ViewModels
         /// <summary>
         /// Receive navigation argumetns for this Page
         /// </summary>
-        public object NavigationArguments { get; set; }
+        public NavigationArgument NavigationArgument { get; set; }
 
         /// <summary>
         /// Public property to set and get the title of the item

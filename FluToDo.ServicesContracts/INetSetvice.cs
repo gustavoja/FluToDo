@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FluToDo.Models.ServiceContracts
+namespace FluToDo.Models.ServicesContracts
 {
     public interface INetService
     {

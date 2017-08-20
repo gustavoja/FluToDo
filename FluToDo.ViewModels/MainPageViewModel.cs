@@ -1,4 +1,4 @@
-﻿using FluToDo.Models.ServiceContracts;
+﻿using FluToDo.Models.ServicesContracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +13,12 @@ namespace FluToDo.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
+
+        #region Fields
+
+        public const string RefreshListArgumentKey = "MainPageViewModel.RefreshListArgumentKey";
+
+        #endregion Fields
 
         #region Fields
 
@@ -81,6 +87,7 @@ namespace FluToDo.ViewModels
             Title = Strings.FluToDo;
 
             SynchronizeCommand.Execute(null);
+
         }
 
         #endregion Constructor
@@ -106,16 +113,6 @@ namespace FluToDo.ViewModels
             finally
             {
                 IsRefreshing = false;
-#if debug
-                var listN = new List<TodoItem>();
-                listN.Add(new TodoItem() { Name = "1sdfjdfhasdfhdfdafhaskdjlfhasfjkhadsjklfhadsfjkldashfljkadshfasdhjklfdhsjfjhasdfhasdjklfajsdjhfasdjklfdjkl", IsComplete = true, Key = "0" });
-                listN.Add(new TodoItem() { Name = "2dsfadfdasf", IsComplete = false, Key = "1" });
-                listN.Add(new TodoItem() { Name = "3asdfadsfasdfadsf", IsComplete = true, Key = "2" });
-                listN.Add(new TodoItem() { Name = "4asdfasdfsdafdsfdfasdfdfdsfdfdsafasdgfdgdgdadgasddfdsfadsfadfadsafdfs", IsComplete = false, Key = "3" });
-                EntityItemList = listN;
-                List<TodoItemViewModel> vmList1 = EntityItemList.Select(i => new TodoItemViewModel(i)).ToList();
-                ItemList = new ObservableCollection<TodoItemViewModel>(vmList1.AsEnumerable());
-#endif
             }
         }
 
@@ -145,12 +142,7 @@ namespace FluToDo.ViewModels
             }
             finally
             {
-                ItemList.ElementAt(index).IsBusy = false;           
-                #if debug
-                var todoItem1 = new TodoItem() { Key = EntityItemList.ElementAt(index).Key, Name = EntityItemList.ElementAt(index).Name, IsComplete = !EntityItemList.ElementAt(index).IsComplete };
-                EntityItemList.ElementAt(index).IsComplete = todoItem1.IsComplete;
-                ItemList.ElementAt(index).IsComplete = todoItem1.IsComplete;
-                #endif 
+                ItemList.ElementAt(index).IsBusy = false;
             }
         }
 
@@ -178,11 +170,6 @@ namespace FluToDo.ViewModels
             {
                 ItemList.ElementAt(index).IsBusy = false;
                 DialogService.DisplayAlert(Strings.ConnectionFailed, e.Message, Strings.Ok);
-
-                #if debug
-                EntityItemList.RemoveAt(index);
-                ItemList.RemoveAt(index);
-                #endif 
             }
 
         }
@@ -193,5 +180,28 @@ namespace FluToDo.ViewModels
         }
 
         #endregion Handlers
+
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (this.NavigationArgument != null)
+            {
+                if (NavigationArgument.Key == RefreshListArgumentKey)
+                {
+                    EntityItemList = (NavigationArgument.Object as List<TodoItem>);
+                    var vmList = EntityItemList.Select(i => new TodoItemViewModel(i)).ToList();
+                    if (ItemList != null)
+                        ItemList.Clear();
+                    ItemList = new ObservableCollection<TodoItemViewModel>(vmList.AsEnumerable());
+                    NavigationArgument = null;
+                }
+            }
+        }
+
+        public override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            this.NavigationArgument = null;
+        }
     }
 }

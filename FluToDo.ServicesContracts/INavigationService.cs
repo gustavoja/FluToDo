@@ -1,10 +1,13 @@
 ﻿using System;
-namespace FluToDo.Models.ServiceContracts
+using FluToDo.Models.ServicesContracts.Helpers;
+
+namespace FluToDo.Models.ServicesContracts
 {
     public interface INavigationService
     {
-        void PushPage(Type ViewModel, object args=null, bool pushModal=false);
-        void PopPage(bool pushModal=false);
+        void PushPage(Type ViewModel, NavigationArgument args =null, bool pushModal=false);
+        void PopPage(NavigationArgument args = null, bool pushModal = false);
         void PopToRoot();
+        void PagePopped(NavigationArgument args);
     }
 }

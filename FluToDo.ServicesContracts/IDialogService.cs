@@ -1,4 +1,4 @@
-﻿namespace FluToDo.Models.ServiceContracts
+﻿namespace FluToDo.Models.ServicesContracts
 {
     public interface IDialogService
     {

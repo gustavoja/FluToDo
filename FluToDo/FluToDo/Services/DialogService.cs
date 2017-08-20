@@ -1,4 +1,4 @@
-﻿using FluToDo.Models.ServiceContracts;
+﻿using FluToDo.Models.ServicesContracts;
 using Xamarin.Forms;
 
 namespace FluToDo.Services
