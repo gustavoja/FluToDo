@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FluToDo.CustomViews.ItemView"
+             Orientation="Horizontal" 
+             Margin="{StaticResource Margin}">
+
+    <Label HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Name}" LineBreakMode="TailTruncation"  />
+    <RelativeLayout VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="{StaticResource IconSize}" HeightRequest="{StaticResource IconSize}">
+        <Image Aspect="AspectFit" Source="icon.png" IsVisible="{Binding IsCompleteAndUpdate}"></Image>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" HorizontalOptions="Center" WidthRequest="{StaticResource IconSize}" HeightRequest="{StaticResource IconSize}"></ActivityIndicator>
+    </RelativeLayout>
+
+</StackLayout>
