@@ -1,5 +1,4 @@
 ﻿using FluToDo.Models.ServiceContracts;
-using FluToDo.Models.ServicesContracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

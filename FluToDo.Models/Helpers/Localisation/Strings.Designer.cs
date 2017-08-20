@@ -71,6 +71,15 @@ namespace FluToDo.Models.Helpers.Localisation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create new FluToDo task.
+        /// </summary>
+        public static string CreatePageTitle {
+            get {
+                return ResourceManager.GetString("CreatePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ToDo item {0} has been deleted correctly.
         /// </summary>
         public static string DeletedCorrectly {

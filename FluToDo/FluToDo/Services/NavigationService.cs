@@ -1,6 +1,8 @@
-﻿using FluToDo.Models.ServicesContracts;
+﻿using FluToDo.Models.ServiceContracts;
+using FluToDo.Pages;
 using FluToDo.ViewModels;
 using System;
+using Xamarin.Forms;
 
 namespace FluToDo.Services
 {
@@ -23,25 +25,24 @@ namespace FluToDo.Services
 
         public void PushPage(Type ViewModel, object args = null, bool modalPush = false)
         {
+            BasePage newPage;
             switch (ViewModel.Name)
             {
                 case nameof(MainPageViewModel):
-                    var newPage = new Pages.MainPage();
+                    newPage = new MainPage();
                     if (App.Current.MainPage != null)
                     {
-                        if (!modalPush)
-                        {
-                            App.Current.MainPage.Navigation.PushAsync(newPage);
-                        }
-                        else
-                        {
-                            App.Current.MainPage.Navigation.PushModalAsync(newPage);
-                        }
+                        Push(newPage, modalPush);
                     }
                     else
                     {
                         App.Current.MainPage = newPage;
                     }
+                    break;
+
+                case nameof(CreatePageViewModel):
+                    newPage = new CreatePage();
+                    Push(newPage, modalPush);
                     break;
                 default:
                     break;
@@ -52,6 +53,18 @@ namespace FluToDo.Services
         {
             if (App.Current.MainPage != null)
                 App.Current.MainPage.Navigation.PopToRootAsync();
+        }
+
+        private void Push(ContentPage page, bool modalPush)
+        {
+            if (!modalPush)
+            {
+                App.Current.MainPage.Navigation.PushAsync(page);
+            }
+            else
+            {
+                App.Current.MainPage.Navigation.PushModalAsync(page);
+            }
         }
     }
 }

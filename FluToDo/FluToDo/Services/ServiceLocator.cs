@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using FluToDo.Models;
-using FluToDo.Models.ServicesContracts;
+using FluToDo.Models.ServiceContracts;
 
 namespace FluToDo.Services
 {

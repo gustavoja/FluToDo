@@ -1,5 +1,4 @@
 ﻿using FluToDo.Models.ServiceContracts;
-using FluToDo.Models.ServicesContracts;
 using FluToDo.ViewModels.Helpers;
 
 namespace FluToDo.ViewModels
