@@ -6,6 +6,9 @@
              Margin="10">
 
     <Label HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding Name}" />
-    <Image VerticalOptions="Center" WidthRequest="50" HeightRequest="50" Source="check.png" IsVisible="{Binding IsComplete}"></Image>
+    <RelativeLayout VerticalOptions="Center" HorizontalOptions="End">
+        <Image Aspect="AspectFit" Source="check.png" IsVisible="{Binding IsCompleteAndUpdate}"  HorizontalOptions="End"></Image>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"></ActivityIndicator>
+    </RelativeLayout>
 
 </StackLayout>

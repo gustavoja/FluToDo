@@ -12,7 +12,7 @@
              >
 
     <ContentPage.Content>
-        <ListView  IsRefreshing="{Binding IsRefreshing}" ItemsSource="{Binding ItemList}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding SynchronizeCommand}">
+        <ListView  IsRefreshing="{Binding IsRefreshing}" ItemsSource="{Binding ItemList}" IsPullToRefreshEnabled="True" RefreshCommand="{Binding SynchronizeCommand}"  >
 
             <ListView.ItemTemplate>
                 <DataTemplate>

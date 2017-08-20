@@ -1,10 +1,8 @@
 ﻿using FluToDo.Models.ServiceContracts;
 using FluToDo.Models.ServicesContracts;
-using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using FluToDo.Models.Helpers.Localisation;
 using System.Collections.ObjectModel;
@@ -92,8 +90,7 @@ namespace FluToDo.ViewModels
                 var vmList = EntityItemList.Select(i => new TodoItemViewModel(i)).ToList();
                 if (ItemList != null)
                     ItemList.Clear();
-                foreach (var vm in vmList)
-                    ItemList.Add(vm);
+                ItemList = new ObservableCollection<TodoItemViewModel>(vmList.AsEnumerable());
             }
             catch (Exception e)
             {
@@ -112,7 +109,7 @@ namespace FluToDo.ViewModels
 
             try
             {
-                await Task.Delay(1000);
+                ItemList.ElementAt(index).IsBusy = true;
                 var todoItem = new TodoItem() { Key = EntityItemList.ElementAt(index).Key, Name = EntityItemList.ElementAt(index).Name, IsComplete = !EntityItemList.ElementAt(index).IsComplete };
                 var updated = await NetService.Update(todoItem, todoItem.Key);
                 if (updated)
@@ -129,15 +126,18 @@ namespace FluToDo.ViewModels
             {
                 DialogService.DisplayAlert(Strings.ConnectionFailed, e.Message, Strings.Ok);
             }
+            finally
+            {
+                ItemList.ElementAt(index).IsBusy = false;
+            }
         }
 
         private async void OnItemDeleted(object eventArg)
         {
             var index = ItemList.IndexOf(eventArg as TodoItemViewModel);
-
             try
             {
-                await Task.Delay(1000);
+                ItemList.ElementAt(index).IsBusy = true;
                 var todoItem = EntityItemList.ElementAt(index);
                 var deleted = await NetService.Delete(todoItem);
                 if (deleted)
@@ -148,11 +148,13 @@ namespace FluToDo.ViewModels
                 }
                 else
                 {
+                    ItemList.ElementAt(index).IsBusy = false;
                     DialogService.DisplayAlert(Strings.Failed, string.Format(Strings.DeletedIncorrectly, todoItem.Name), Strings.Ok);
                 }
             }
             catch (Exception e)
             {
+                ItemList.ElementAt(index).IsBusy = false;
                 DialogService.DisplayAlert(Strings.ConnectionFailed, e.Message, Strings.Ok);
             }
 

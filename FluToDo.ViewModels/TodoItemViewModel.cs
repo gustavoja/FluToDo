@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace FluToDo.ViewModels
 {
-    public class TodoItemViewModel:ObservableObject
+    public class TodoItemViewModel : ObservableObject
     {
-        public  TodoItemViewModel(TodoItem item)
+        public TodoItemViewModel(TodoItem item)
         {
             this.Name = item.Name;
             this.IsComplete = item.IsComplete;
+            this.IsBusy = false;
         }
 
         private string name;
@@ -27,8 +28,34 @@ namespace FluToDo.ViewModels
         public bool IsComplete
         {
             get { return isComplete; }
-            set { SetProperty(ref isComplete, value); }
+            set
+            {
+                IsCompleteAndUpdate = IsBusy == true ? false : value;
+                SetProperty(ref isComplete, value);
+            }
         }
+
+        /// <summary>
+        /// Allows to show a progress indicator if the net request is taking too long
+        /// </summary>
+        private bool isCompleteAndUpdate = false;
+        public bool IsCompleteAndUpdate
+        {
+            get { return isCompleteAndUpdate; }
+            set { SetProperty(ref isCompleteAndUpdate, value); }
+        }
+
+        private bool isBusy = false;
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                IsCompleteAndUpdate = value == true ? false: IsComplete;
+                SetProperty(ref isBusy, value);
+            }
+        }
+
 
     }
 }
